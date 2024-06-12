@@ -16,7 +16,15 @@ app.post("/add",(req,res)=>{
     let review= new reviewModel(input)
     review.save()
     console.log(review)
-    res.json("status":"success")
+    res.json({"status":"success"})
+})
+
+app.post("/view",(req,res)=>{
+   reviewModel.find().then((data)=>{
+    res.json(data)
+   }).catch((error)=>{
+    res.json(error)
+   })
 })
 
 app.listen(8080,()=>{
